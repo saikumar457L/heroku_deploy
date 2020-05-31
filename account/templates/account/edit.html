@@ -1,0 +1,17 @@
+{% extends 'account/base.html' %}
+
+{% block title %}Update your profile {% endblock title %}
+
+{% block content %}
+
+<div class="profile-edit">
+  <h3>Edit your profile</h3>
+  <form class="" action="." method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{user_form.as_p}}
+    {{profile_form.as_p}}
+    <button type="submit" name="button">Update</button>
+  </form>
+</div>
+
+{% endblock content %}

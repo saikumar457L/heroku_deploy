@@ -1,0 +1,15 @@
+{% extends 'account/base.html' %}
+
+{% load blog_tags %}
+
+{% block title %}Just trying markdown {% endblock title %}
+
+{% block content %}
+
+<div class="try">
+  {% for post in posts %}
+    {{post.body|markdown}}
+  {% endfor %}
+</div>
+
+{% endblock content %}

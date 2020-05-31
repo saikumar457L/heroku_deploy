@@ -1,0 +1,15 @@
+{% extends 'account/base.html' %}
+
+{% load blog_tags %}
+
+{% block title %}Welcome {{user.username}} to your account {% endblock title %}
+
+{% block content %}
+
+<div class="dashboard">
+  ![image](https://images.wallpaperscraft.com/image/forest_road_fog_130640_1600x1200.jpg)|markdown
+  <h5>Welcom to your account</h5>
+  <a href="{% url 'update_profile' %}">Edit your profile</a>
+</div>
+
+{% endblock content %}

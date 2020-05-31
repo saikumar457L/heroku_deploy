@@ -1,0 +1,25 @@
+{% extends 'account/base.html' %}
+
+{% block title %} Login to your account {% endblock title %}
+
+
+{% block content %}
+
+<div class="login">
+  {% if user.is_authenticated %}
+    <p>your are already logged in <a href="#">go to home</a></p>
+  {% else %}
+    <h3>Log in to your account</h3>
+
+    <form class="" action="." method="post">
+      {% csrf_token %}
+      {{form.as_p}}
+      <input type="hidden" name="next" value="{{next}}"/>
+      <button type="submit" name="button">Login</button> <a href="{% url 'password_reset' %}">Forgot password</a>
+      <p>doesn't have account? <a href="{% url 'create_account' %}">Create Account.</a></p>
+    </form>
+  {% endif %}
+</div>
+
+
+{% endblock content %}

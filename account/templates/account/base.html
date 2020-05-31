@@ -1,0 +1,67 @@
+{% load static %}
+
+{% load blog_tags %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %} {% endblock title %}</title>
+  </head>
+  <body>
+    <header>
+      <span class="logo">
+        Bookmarks
+      </span>
+      {% if request.user.is_authenticated %}
+
+        <ul class="menu">
+          <li {% if section == "dashboard" %} class="selected" {% endif %}>
+            <a href="{% url 'dashboard' %}">My dashboard</a>
+          </li>
+
+          <li {% if section == "images" %} class="selected" {% endif %}>
+            <a href="">Images</a>
+          </li>
+
+          <li {% if section == "people" %} class="selected" {% endif %}>
+            <a href="#">People</a>
+          </li>
+          <li>
+            <a href="{% url 'home' %}">home</a>
+          </li>
+
+        </ul>
+
+
+      {% endif %}
+
+      <span class="user">
+        {% if request.user.is_authenticated %}
+          Hi {{request.user.username}}! |
+          <a href="{% url 'logout' %}">Log out</a> |
+          <a href="{% url 'password_change' %}">Change password</a>
+        {% else %}
+          <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+      </span>
+
+      {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li class="{{message.tags}}">
+              {{message|safe}}
+              <a href="#" class="close">x</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+    </header>
+
+    {% block content %}
+
+    {% endblock content %}
+
+  </body>
+</html>
